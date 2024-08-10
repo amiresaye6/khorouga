@@ -1,0 +1,29 @@
+project-root/
+│
+├── node_modules/             # Node.js modules (auto-generated)
+├── public/                   # Static files (optional)
+│   └── index.html            # Example static file
+├── src/                      # Source code
+│   ├── controllers/          # Controllers for handling requests
+│   │   ├── AppController.js  # Example controller
+│   │   └── UsersController.js
+│   ├── middleware/           # Custom middleware
+│   │   └── authMiddleware.js # Example middleware
+│   ├── models/               # Database models
+│   │   ├── userModel.js      # Example model
+│   │   └── tripModel.js
+│   ├── routes/               # Route definitions
+│   │   ├── index.js          # Main routes file
+│   │   └── userRoutes.js     # User-related routes
+│   ├── services/             # Business logic and services
+│   │   └── userService.js    # Example service
+│   ├── utils/                # Utility functions and helpers
+│   │   ├── dbClient.js       # Database client
+│   │   └── logger.js         # Example utility
+│   ├── app.js                # Main application file
+│   └── config.js             # Configuration settings (e.g., DB connection)
+├── .env                      # Environment variables
+├── .gitignore                # Git ignore file
+├── package.json              # Project metadata and dependencies
+├── package-lock.json         # Dependency lock file
+└── README.md                 # Project documentation
