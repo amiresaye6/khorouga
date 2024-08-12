@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const TripsSchema = mongoose.Schema(
     {
+        user_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Trip'
+        },
         trip_name: {
             type: String,
             required: true,

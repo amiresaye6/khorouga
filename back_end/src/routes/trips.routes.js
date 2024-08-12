@@ -1,16 +1,21 @@
 const express = require('express');
-const { getAllTrips, getOneTrip, createTrip, updateTrip, deleteTrip } = require('../controllers/trips.controller.js');
+const { getAllTrips, getOneTrip, createTrip, updateTrip, deleteTrip, getMyTrips, getTripsByAuthor } = require('../controllers/trips.controller.js');
 const router = express.Router();
-
+const validateToken = require('../middleware/validateTokenHandler.js')
 
 router.get('/', getAllTrips);
 
 router.get('/:id', getOneTrip);
 
-router.post('/', createTrip);
+router.get('/authors/:author', getTripsByAuthor);
 
-router.put('/:id', updateTrip);
+// private routes
+router.get('/me/trips', validateToken, getMyTrips);
 
-router.delete('/:id', deleteTrip);
+router.post('/', validateToken, createTrip);
+
+router.put('/:id', validateToken, updateTrip);
+
+router.delete('/:id', validateToken, deleteTrip);
 
 module.exports = router
