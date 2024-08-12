@@ -4,8 +4,9 @@ const app = require('./app');
 
 dotenv.config();
 const PORT = process.env.PORT || 5432;
+const mongoUrl = process.env.CONNECTION_STRING
 
-mongoose.connect("mongodb+srv://amiralsayedwork:6zdLYJMajODV9jCW@backenddb.cp7te.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDb")
+mongoose.connect(mongoUrl)
     .then(() => {
         console.log("connected succesfully to the database:");
         app.listen(PORT, () => {
