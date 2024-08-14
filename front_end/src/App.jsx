@@ -1,13 +1,12 @@
 import Navbar from "./components/Navbar/Navbar";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 	return (
 		<div className='App'>
+			<Toaster />
 			<Navbar />
-			<h1>Khorouga</h1>
-			<h2>Simple trips programs making and sharing platform.</h2>
-			<Login />
 		</div>
 	);
 }
