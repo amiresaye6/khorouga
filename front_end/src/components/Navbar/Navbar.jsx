@@ -8,7 +8,6 @@ const Navbar = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
-  // Define links and menu items
   const navLinks = [
     { name: 'Dashboard', href: '/', current: true },
     { name: 'Team', href: '/' },
@@ -17,7 +16,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white bg-opacity-30 backdrop-blur-md shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-15 shadow-lg backdrop-blur-lg border border-white/20 rounded-lg">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -65,8 +64,8 @@ const Navbar = () => {
             <div className="flex flex-shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
+                src={amont}
+                alt="Khorouga"
               />
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -75,11 +74,10 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className={`rounded-md px-3 py-2 text-sm font-medium ${
-                      link.current
+                    className={`rounded-md px-3 py-2 text-sm font-medium ${link.current
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                    }`}
+                      }`}
                     aria-current={link.current ? 'page' : undefined}
                   >
                     {link.name}
@@ -170,11 +168,10 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`block rounded-md px-3 py-2 text-base font-medium ${
-                  link.current
+                className={`block rounded-md px-3 py-2 text-base font-medium ${link.current
                     ? 'bg-gray-900 text-white'
                     : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                }`}
+                  }`}
                 aria-current={link.current ? 'page' : undefined}
               >
                 {link.name}
