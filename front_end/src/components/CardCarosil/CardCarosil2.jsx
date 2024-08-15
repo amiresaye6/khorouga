@@ -1,19 +1,15 @@
-"use client";
-// import Image from "next/image";
 import React from "react";
 import { Carousel, Card } from "../ui/apple-cards-carousel";
-import amongo from '../../Assets/amongus.png'
 
-
-export function AppleCardsCarouselDemo() {
+export function AppleCardsCarouselDemo2() {
   const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} layout={true} />
+    <Card key={card.src} card={card} index={index} />
   ));
 
   return (
     <div className="w-full h-full py-20">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-        Start your next trip now.
+        Get to know your iSad.
       </h2>
       <Carousel items={cards} />
     </div>
@@ -27,11 +23,11 @@ const DummyContent = () => {
         return (
           <div
             key={"dummy-content" + index}
-            className="bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4"
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
           >
-            <p className="text-neutral-600 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-              <span className="font-bold text-neutral-700">
-                place title
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                The first rule of Apple club is that you boast about Apple club.
               </span>{" "}
               Keep a journal, quickly jot down a grocery list, and take amazing
               class notes. Want to convert those notes to text? No problem.
@@ -39,8 +35,7 @@ const DummyContent = () => {
               thought.
             </p>
             <img
-              // src="https://assets.aceternity.com/macbook.png"
-              src={amongo}
+              src="https://assets.aceternity.com/macbook.png"
               alt="Macbook mockup from Aceternity UI"
               height="500"
               width="500"
@@ -73,22 +68,22 @@ const data = [
     content: <DummyContent />,
   },
 
-  // {
-  //   category: "Product",
-  //   title: "Maps for your iPhone 15 Pro Max.",
-  //   src: "https://images.unsplash.com/photo-1599202860130-f600f4948364?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   content: <DummyContent />,
-  // },
-  // {
-  //   category: "iOS",
-  //   title: "Photography just got better.",
-  //   src: "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?q=80&w=2793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   content: <DummyContent />,
-  // },
-  // {
-  //   category: "Hiring",
-  //   title: "Hiring for a Staff Software Engineer",
-  //   src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  //   content: <DummyContent />,
-  // },
+  {
+    category: "Product",
+    title: "Maps for your iPhone 15 Pro Max.",
+    src: "https://images.unsplash.com/photo-1599202860130-f600f4948364?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    content: <DummyContent />,
+  },
+  {
+    category: "iOS",
+    title: "Photography just got better.",
+    src: "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?q=80&w=2793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    content: <DummyContent />,
+  },
+  {
+    category: "Hiring",
+    title: "Hiring for a Staff Software Engineer",
+    src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    content: <DummyContent />,
+  },
 ];
