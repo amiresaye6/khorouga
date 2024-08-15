@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
-// import Login from "./pages/Login";
 import { Toaster } from 'react-hot-toast';
-import TripCard from './components/TripCard/TripCard';
 import LoginCard from './components/LoginCard/LoginCard';
+import Trips from './pages/Trips';
+import Home from './pages/Home';
+import { AppleCardsCarouselDemo } from './components/CardCarosil/CardCarosil';
+// import Sample from './pages/Contact';
+// import Footer from './components/Footer/Footer';
 
 function App() {
 	return (
@@ -12,19 +14,12 @@ function App() {
 			<Toaster />
 			<Navbar />
 			<Routes>
-				<Route path="/botato" element={<Hero />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<LoginCard />} />
-				{/* <Route path="/any" element={<Hero />} /> */}
-				{/* <Route path="/any" element={<Hero />} /> */}
-				{/* <Route path="/any" element={<Hero />} /> */}
+				{/* <Route path="/explore" element={<Trips />} /> */}
+				<Route path="/explore" element={<AppleCardsCarouselDemo />} />
 			</Routes>
-			<TripCard />
-			<TripCard />
-			<TripCard />
-			<TripCard />
-			<TripCard />
-			<TripCard />
-			<TripCard />
+			{/* <Footer /> */}
 		</div>
 	);
 }

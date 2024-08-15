@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import amont from '../../Assets/amongus.png';
+import Logo from '../Logo/Logo';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -9,10 +11,14 @@ const Navbar = () => {
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const navLinks = [
-    { name: 'Dashboard', href: '/', current: true },
-    { name: 'Team', href: '/' },
-    { name: 'Projects', href: '/' },
-    { name: 'Calendar', href: '/' },
+    // Purpose: Direct users to the homepage where they can get an overview of the website and explore featured trips.
+    { name: 'Home', to: '/', current: true },
+    // Purpose: Allows users to browse trips by location, activity, or duration.
+    { name: 'Explore Trips', to: '/explore' },
+    // Purpose: Provides a form or interface for users to create and share their own trips.
+    { name: 'Create Your Trip', to: '/create' },
+    // Purpose: Provides information about Khotoga’s mission, team, and values.
+    { name: 'About Us', to: '/about' },
   ];
 
   return (
@@ -62,26 +68,27 @@ const Navbar = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <img
+              {/* <img
                 className="h-8 w-auto"
                 src={amont}
                 alt="Khorouga"
-              />
+              /> */}
+              <Logo />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
+                    to={link.to}
                     className={`rounded-md px-3 py-2 text-sm font-medium ${link.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                       }`}
                     aria-current={link.current ? 'page' : undefined}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -132,27 +139,27 @@ const Navbar = () => {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
-                  <a
-                    href="/"
+                  <Link
+                    to="/profile"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                   >
                     Your Profile
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    to="/settings"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                   >
                     Settings
-                  </a>
-                  <a
-                    href="/"
+                  </Link>
+                  <Link
+                    to="/signOut"
                     className="block px-4 py-2 text-sm text-gray-700"
                     role="menuitem"
                   >
                     Sign out
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -165,17 +172,17 @@ const Navbar = () => {
         <div className="sm:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.to}
                 className={`block rounded-md px-3 py-2 text-base font-medium ${link.current
-                    ? 'bg-gray-900 text-white'
-                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ? 'bg-gray-900 text-white'
+                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   }`}
                 aria-current={link.current ? 'page' : undefined}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
