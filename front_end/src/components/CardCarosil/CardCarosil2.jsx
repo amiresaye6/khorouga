@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel, Card } from "../ui/apple-cards-carousel";
 
-export function AppleCardsCarouselDemo2() {
+export function CardCarosil() {
   const cards = data.map((card, index) => (
     <Card key={card.src} card={card} index={index} />
   ));
@@ -9,7 +9,7 @@ export function AppleCardsCarouselDemo2() {
   return (
     <div className="w-full h-full py-20">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-        Get to know your iSad.
+        Start you next trip now.
       </h2>
       <Carousel items={cards} />
     </div>

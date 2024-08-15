@@ -1,13 +1,17 @@
 import React from 'react'
+import Ripple from '../Ribble/Ribble';
+import { Link } from 'react-router-dom';
 
 function Hero() {
     return (
-        <div className='flex flex-col justify-center align-middle my-20 bg-white bg-opacity-15 shadow-lg backdrop-blur-lg border border-white/20 rounded-lg'>
-            <h1 className='text-center'>Discover Your Next Adventure with Khotoga.</h1>
-            <p className='text-center'>some infor about khorouga Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rem, ab officiis assumenda vel sint, iure modi aperiam, suscipit esse doloribus. Modi voluptates repellat deleniti corporis vero rem labore recusandae?</p>
-            <div>
-                <a href="/" >Explore Trips</a>
-                <a href="/">Start Planning.</a>
+        <div className='overflow-hidden w-full'>
+            <div className='overflow-hidden flex flex-col justify-center items-center my-20  bg-white bg-opacity-15 h-lvh'>
+            <Ripple />
+                <h1 className=' w-1/2 text-center text-7xl text-neutral-100'>Discover Your Next Adventure with Khotoga.</h1>
+                <div className='py-20'>
+                    <Link to="/explore" >Explore Trips</Link>
+                    <Link href="/">Start Planning.</Link>
+                </div>
             </div>
         </div>
     )
