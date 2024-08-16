@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 // import CustomCursorCard from '../components/CustomCursor/CustomCursorCard';
 import CustomCursor from '../components/TripCardWithCursor/CustomCursor';
 import TripCard from '../components/TripCardWithCursor/TripCard';
+import { Card } from '../components/ui/apple-cards-carousel';
+import { Content, DummyContent } from '../components/CardCarosil/CardCarosil';
 
 function Trips() {
     const [cursorVisible, setCursorVisible] = useState(false);
@@ -19,54 +21,56 @@ function Trips() {
             <div className="h-screen text-center py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
 
-                        <TripCard
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                    <TripCard
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    />
+                    <Content />
                 </div>
             </div>
         </div>
     )
 }
+
 
 export default Trips;

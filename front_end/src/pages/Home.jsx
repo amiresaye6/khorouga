@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from '../components/Hero/Hero';
-import { CardCarosil } from '../components/CardCarosil/CardCarosil2';
+import { CardCarosil } from '../components/CardCarosil/CardCarosil';
 
 function Home() {
   return (

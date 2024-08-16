@@ -63,7 +63,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
   return (
     <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
-        <div className="overflow-hidden flex w-full py-10 md:py-20 scroll-smooth scrollbar-none" ref={carouselRef} onScroll={checkScrollability}>
+        <div className="overflow-hidden flex w-full py-10 md:py-20 scroll-smooth scrollbar-none " ref={carouselRef} onScroll={checkScrollability}>
           <div className={cn("absolute right-0 z-1000 h-auto w-1/20 overflow-hidden bg-gradient-to-l")} />
           <div className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto")}>
             {items.map((item, index) => (
@@ -94,7 +94,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
 export const Card = ({ card, index, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   useEffect(() => {
     function onKeyDown(event) {
