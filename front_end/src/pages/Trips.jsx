@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from '../components/ui/apple-cards-carousel';
 import { Places } from '../components/CardCarosil/CardCarosil';
+import PaginationButtonsComponent from '../components/PaginationButtonsComponent/PaginationButtonsComponent';
 
 function Trips() {
     const [trips, setTrips] = useState([])
@@ -52,6 +53,7 @@ function Trips() {
                     ))}
                 </div>
             </div>
+            <PaginationButtonsComponent />
         </div>
     )
 
