@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const Logo = () => {
+const Logo = (props) => {
     const draw = {
         hidden: { pathLength: 0, opacity: 0 },
         visible: {
@@ -35,7 +35,11 @@ const Logo = () => {
                             stroke="#009080"
                         />
                     </motion.svg>
-                    <span className="relative text-gray-800 font-alliance">Khorouga</span>
+                    {
+                        props.footer ?
+                        <span className="relative text-white font-alliance">Khorouga</span> :
+                            <span className="relative text-gray-800 font-alliance">Khorouga</span>
+                    }
                 </span>
             </h1>
         </div>

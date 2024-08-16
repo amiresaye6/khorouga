@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import LoginCard from './components/LoginCard/LoginCard';
 import Trips from './pages/Trips';
 import Home from './pages/Home';
+import FooterComponent from './components/Footer/FooterComponent';
 
 function App() {
 	return (
@@ -17,7 +18,7 @@ function App() {
 				<Route path="/about" element={<Home />} />
 				<Route path="/create" element={<Home />} />
 			</Routes>
-			{/* <Footer /> */}
+			<FooterComponent />
 		</div>
 	);
 }
