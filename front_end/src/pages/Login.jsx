@@ -56,6 +56,7 @@ function Login() {
         });
         if (response.ok) {
             const user = await response.json();
+            localStorage.setItem('token', user.accessToken);
             setToken(user.accessToken)
             success()
             navigate('/');

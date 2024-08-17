@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import FooterComponent from './components/Footer/FooterComponent';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/explore" element={<Trips />} />
 				<Route path="/about" element={<Home />} />
 				<Route path="/create" element={<Home />} />
+				<Route path="/profile" element={<Profile />} />
 			</Routes>
 			<FooterComponent />
 		</div>
