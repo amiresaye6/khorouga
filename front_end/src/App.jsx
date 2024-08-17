@@ -7,6 +7,8 @@ import FooterComponent from './components/Footer/FooterComponent';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import About from './pages/About';
+import ContactUs from './pages/ContactUs';
 
 function App() {
 	return (
@@ -18,9 +20,10 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/explore" element={<Trips />} />
-				<Route path="/about" element={<Home />} />
+				<Route path="/about" element={<About />} />
 				<Route path="/create" element={<Home />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/contact" element={<ContactUs />} />
 			</Routes>
 			<FooterComponent />
 		</div>

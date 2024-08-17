@@ -23,7 +23,7 @@ function Hero() {
                     textShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                 }}
             >
-                Discover Your <span style={{ color: '#a945e8' }}>Next Adventure</span> with Khotoga.
+                Discover Your <span style={{ color: '#a945e8' }}>Next Adventure</span> with Khoroga.
             </h1>
 
             <div className='relative py-20'>

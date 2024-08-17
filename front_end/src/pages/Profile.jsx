@@ -17,12 +17,19 @@ function Profile() {
                 }
             );
 
-            const data = await response.json();
-            setMyTrips(data)
+            if (response.ok) {
+                const data = await response.json();
+                setMyTrips(data)
+            } else {
+                toast.error("Session expired, Please log in again");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 3000);
+            }
+
         } else {
             console.log('please log in');
             toast("please login")
-            
         }
     }
     useEffect(() => {
@@ -31,7 +38,10 @@ function Profile() {
     return (
         <div className="relative w-full h-fit" >
             <div className="w-full text-center flex-col py-10 md:py-20 flex justify-center items-center">
-                <h1>My trips</h1>
+                <h1 style={{
+                    color: '#e2e5fb',
+                    fontSize: '22px'
+                }}>My trips</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 my-5">
                     {
                         myTrips.map(Trip => <h1>{Trip.author}</h1>)
