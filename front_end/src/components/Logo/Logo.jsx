@@ -36,9 +36,7 @@ const Logo = (props) => {
                         />
                     </motion.svg>
                     {
-                        props.footer ?
-                        <span className="relative text-white font-alliance">Khorouga</span> :
-                            <span className="relative text-gray-800 font-alliance">Khorouga</span>
+                        <span className="relative text-white font-alliance">Khorouga</span>
                     }
                 </span>
             </h1>
