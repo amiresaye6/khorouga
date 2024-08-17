@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import About from './pages/About';
 import ContactUs from './pages/ContactUs';
+import CreateTrip from './pages/CreateTrip';
 
 function App() {
 	return (
@@ -21,7 +22,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/explore" element={<Trips />} />
 				<Route path="/about" element={<About />} />
-				<Route path="/create" element={<Home />} />
+				<Route path="/create" element={<CreateTrip />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/contact" element={<ContactUs />} />
 			</Routes>
