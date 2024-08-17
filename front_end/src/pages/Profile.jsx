@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PaginationButtonsComponent from '../components/PaginationButtonsComponent/PaginationButtonsComponent';
+import toast from 'react-hot-toast';
 
 function Profile() {
     const [myTrips, setMyTrips] = useState([]);
@@ -20,6 +21,8 @@ function Profile() {
             setMyTrips(data)
         } else {
             console.log('please log in');
+            toast("please login")
+            
         }
     }
     useEffect(() => {

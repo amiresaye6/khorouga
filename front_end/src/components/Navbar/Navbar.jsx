@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import amont from '../../Assets/amongus.png';
 import Logo from '../Logo/Logo';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const location = useLocation(); // Get the current location
+
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const navLinks = [
-    // Purpose: Direct users to the homepage where they can get an overview of the website and explore featured trips.
-    { name: 'Home', to: '/', current: true },
-    // Purpose: Allows users to browse trips by location, activity, or duration.
+    { name: 'Home', to: '/' },
     { name: 'Explore Trips', to: '/explore' },
-    // Purpose: Provides a form or interface for users to create and share their own trips.
     { name: 'Create Your Trip', to: '/create' },
-    // Purpose: Provides information about Khotoga’s mission, team, and values.
     { name: 'About Us', to: '/about' },
   ];
 
@@ -69,7 +67,7 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <Link to="/">
-                <Logo footer={false}/>
+                <Logo footer={false} />
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
@@ -78,11 +76,11 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.to}
-                    className={`rounded-md px-3 py-2 text-sm font-medium ${link.current
+                    className={`rounded-md px-3 py-2 text-sm font-medium ${location.pathname === link.to
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                       }`}
-                    aria-current={link.current ? 'page' : undefined}
+                    aria-current={location.pathname === link.to ? 'page' : undefined}
                   >
                     {link.name}
                   </Link>
@@ -172,11 +170,11 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.to}
-                className={`block rounded-md px-3 py-2 text-base font-medium ${link.current
+                className={`block rounded-md px-3 py-2 text-base font-medium ${location.pathname === link.to
                   ? 'bg-gray-900 text-white'
                   : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   }`}
-                aria-current={link.current ? 'page' : undefined}
+                aria-current={location.pathname === link.to ? 'page' : undefined}
               >
                 {link.name}
               </Link>

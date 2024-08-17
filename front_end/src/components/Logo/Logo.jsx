@@ -32,7 +32,7 @@ const Logo = (props) => {
                             variants={draw}
                             strokeWidth="3"
                             fill="none"
-                            stroke="#009080"
+                            stroke="#7a84ef"
                         />
                     </motion.svg>
                     {
