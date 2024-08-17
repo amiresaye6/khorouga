@@ -39,7 +39,7 @@ function Login() {
             }),
         });
         const user = await response.json();
-        setToken(user.accessToken)
+        console.log(user);
     };
 
     return (
