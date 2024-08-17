@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState(null);
+
+    const success = () => toast.success('Loged in successfully', {
+        // duration: 4000,
+        style: {
+            background: '#333',
+            color: '#fff',
+        },
+    });
+    const fail = () => toast.error('Failed, try again please', {
+        // duration: 4000,
+        style: {
+            background: '#333',
+            color: '#fff',
+        },
+    });
 
     function navigate(url) {
         window.location.href = url;
@@ -38,13 +54,21 @@ function Login() {
                 password,
             }),
         });
-        const user = await response.json();
-        setToken(user.accessToken)
+        if (response.ok) {
+            const user = await response.json();
+            setToken(user.accessToken)
+            success()
+            navigate('/');
+        }
+        else {
+            fail()
+        }
     };
 
     return (
         <div className="flex flex-col h-dvh justify-center items-center bg-slate-800">
             <div onClick={() => console.log(token)}>get token</div>
+            <div onClick={() => success()}>get toast</div>
             <div className="bg-white bg-opacity-20 backdrop-blur-md p-10 rounded-lg shadow-lg w-full max-w-md">
                 <form className="max-w-sm mx-auto w-full" onSubmit={fetchUser}>
                     <div className="mb-5">
