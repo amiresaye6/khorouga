@@ -13,6 +13,6 @@ mongoose.connect(mongoUrl)
             console.log(`server is running on port ${PORT}`);
         });
     })
-    .catch(() => {
-        console.log("failed to connect to the database:");
+    .catch((error) => {
+        console.log("Failed to connect to the database:", error);
     });
