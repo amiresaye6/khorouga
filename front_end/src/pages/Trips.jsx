@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Card } from '../components/ui/apple-cards-carousel';
+import { Card } from '../components/ui/cards-carousel';
 import { Places } from '../components/CardCarosil/CardCarosil';
 import PaginationButtonsComponent from '../components/PaginationButtonsComponent/PaginationButtonsComponent';
+import SearchBar from '../components/Search/SearchBar';
 
 function Trips() {
     const [trips, setTrips] = useState([])
@@ -44,6 +45,7 @@ function Trips() {
     return (
         <div className="relative w-full h-fit" >
             <div className="w-full text-center flex-col py-10 md:py-20 flex justify-center items-center">
+            <SearchBar />
             <h1>select your favourit</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 my-5">
                     {cards.map((card, index) => (

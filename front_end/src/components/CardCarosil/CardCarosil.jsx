@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, Card } from "../ui/apple-cards-carousel";
+import { Carousel, Card } from "../ui/cards-carousel";
 
 export function CardCarosil() {
   const [trips, setTrips] = useState([])
@@ -21,7 +21,6 @@ export function CardCarosil() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Include any other headers if needed (e.g., Authorization)
       }
     })
       .then(response => response.json())
@@ -42,7 +41,7 @@ export function CardCarosil() {
   return (
     <div className="w-full h-full py-20">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-        Start your next Advensior now.
+        Start your next Adventior now.
       </h2>
       <Carousel items={cards} />
     </div>
@@ -73,7 +72,7 @@ export const Places = (props) => {
               alt={place.place_name}
               height="500"
               width="500"
-              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded-md"
             />
           </div>
         );
