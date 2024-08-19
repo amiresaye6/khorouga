@@ -1,0 +1,80 @@
+// linkedin post for realtime chat app
+https://www.linkedin.com/posts/mohamed-ahmed-320a491b6_real-time-chat-app-part-1-httpslnkdin-ugcPost-7204454953392697345-7jEj?utm_source=share&utm_medium=member_desktop
+
+// rest api with node and mongodb
+// https://www.youtube.com/watch?v=_7UQPve99r4
+
+
+redis caching system
+
+
+alx Personal data
+https://intranet.alxswe.com/projects/1239
+
+    loging files
+    https://intranet.alxswe.com/rltoken/XCpI9uvguxlTCsAeRCW6SA
+
+    incripting passwords
+    https://intranet.alxswe.com/rltoken/41oaQXfzwnF1i-wT8W0vHw
+
+
+similar websites:
+https://triptile.com/
+
+overview:
+Home
+Purpose: To welcome visitors and provide a quick overview of what the site offers.
+
+Welcome to Khotoga:
+
+Purpose: Introduce Khotoga and its mission.
+Example: A short paragraph explaining that Khotoga helps users plan perfect day trips.
+How It Works: A welcoming message on the homepage.
+Featured Trips:
+
+Purpose: Highlight popular or recommended trips.
+Example: A carousel or grid showcasing a few standout trips.
+How It Works: Display a few trip thumbnails with brief descriptions.
+Search Bar:
+
+Purpose: Allow users to search for trips easily.
+Example: Users can type in keywords like "beach" or "New York."
+How It Works: A search bar at the top of the homepage.
+Explore Trips
+Purpose: Help users find trips based on their interests or needs.
+
+Browse by Location:
+
+Purpose: Find trips in specific geographic areas.
+Example: Users can select "Paris" to see all trips in Paris.
+How It Works: A map or list of regions and cities.
+Browse by Activity:
+
+Purpose: Find trips based on the type of activities.
+Example: Users interested in "Hiking" can find all hiking trips.
+How It Works: A list of activities like "Museums," "Beaches," etc.
+Browse by Duration:
+
+Purpose: Find trips based on available time.
+Example: Users can choose "Full-Day Trips" if they have a whole day.
+How It Works: Options like "Half-Day," "Full-Day," and "Weekend."
+Trip Details
+Purpose: Provide detailed information about each trip.
+
+Overview:
+
+Purpose: Give a brief summary of the trip.
+Example: A paragraph explaining the main highlights.
+How It Works: A brief introduction at the top of the trip page.
+Itinerary:
+
+Purpose: Outline the schedule for the day.
+Example: A timeline showing what happens at each hour.
+How It Works: A detailed schedule.
+Places to Visit:
+
+Purpose: List the locations included in the trip.
+Example: "Eiffel Tower," "Louvre Museum," etc.
+How It Works: A list with detailed information for each place:
+Location: Address or coordinates.
+Things to Do: Recommended activities.
