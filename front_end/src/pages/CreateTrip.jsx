@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { FiTrash2, FiPlus, FiInfo } from 'react-icons/fi';
+import { FiTrash2, FiPlus } from 'react-icons/fi';
 
 const CreateTripForm = () => {
     const [formData, setFormData] = useState({

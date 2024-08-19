@@ -33,6 +33,9 @@ const SearchBar = () => {
             author: trip.author,
             title: trip.trip_name,
             src: trip.cover_image,
+            favs: trip.rating,
+            location: trip.location,
+            id: trip.id,
             content: <Places places={trip.places} imgSrc={trip.cover_image} />,
         }
     })
@@ -41,7 +44,7 @@ const SearchBar = () => {
     ));
 
     return (
-        <div className="p-6 w-1/2 mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 relative">
+        <div className="p-6 w-5/6 mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 relative">
             <form onSubmit={handleSearch} className="flex items-center">
                 <div className="relative w-full">
                     <input
@@ -61,10 +64,8 @@ const SearchBar = () => {
             </form>
             {error && <p className="mt-4 text-red-500">{error}</p>}
             {results.length > 0 && (
-                <ul className="mt-4 space-y-2">
-                    {cards.map((trip, index) => (
-                        trip
-                    ))}
+                <ul className="mt-4 space-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 my-5 w-5/6">
+                    {cards.map(trip => (trip))}
                 </ul>
             )}
         </div>

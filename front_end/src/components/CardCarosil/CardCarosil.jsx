@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Carousel, Card } from "../ui/cards-carousel";
+import { Link } from "react-router-dom";
 
 export function CardCarosil() {
   const [trips, setTrips] = useState([])
@@ -8,6 +9,9 @@ export function CardCarosil() {
       author: trip.author,
       title: trip.trip_name,
       src: trip.cover_image,
+      favs: trip.rating,
+      location: trip.location,
+      id: trip.id,
       content: <Places places={trip.places} imgSrc={trip.cover_image} />,
     }
   })
@@ -63,7 +67,8 @@ export const Places = (props) => {
               <p className="font-bold text-neutral-700 dark:text-neutral-200">
                 {place.place_name}
               </p>
-              <p>{place.location}</p>
+              <p></p>
+              <Link to={place.location} className="hover:text-indigo-700" target="__plank">{place.location}</Link>
               <p>{place.description}</p>
             </p>
             {/*  TO-DO: make the image as the background of each place card with shome shading */}
