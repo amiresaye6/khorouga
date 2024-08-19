@@ -77,6 +77,8 @@ const TripsSchema = mongoose.Schema(
     }
 );
 
+// adding indexing for searching performance
+TripsSchema.index({ trip_name: 'text' });
 const Trips = mongoose.model("Trip", TripsSchema);
 
 module.exports = Trips;

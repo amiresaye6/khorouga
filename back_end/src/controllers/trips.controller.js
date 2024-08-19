@@ -57,7 +57,6 @@ const getOneTrip = async (req, res) => {
     }
 };
 
-
 const getTripsByAuthor = async (req, res) => {
     const { author } = req.params;
     const cacheKey = `authorTrips:${author}`;
@@ -83,7 +82,6 @@ const getTripsByAuthor = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
 
 // private endpoints >> need token
 const getMyTrips = async (req, res) => {
@@ -111,6 +109,59 @@ const getMyTrips = async (req, res) => {
     }
 };
 
+
+const searchTripsByName = async (req, res) => {
+    try {
+        const { trip_name } = req.query;
+
+        if (!trip_name) {
+            return res.status(400).json({ message: 'Trip name query parameter is required' });
+        }
+
+        // Check the cache first
+        const cacheKey = `trips:${trip_name}`;
+        const cachedTrips = await redisClient.get(cacheKey);
+
+        if (cachedTrips) {
+            const parsedTrips = JSON.parse(cachedTrips);
+            return res.status(200).json({
+                numberOfResults: parsedTrips.numberOfResults,
+                results: parsedTrips.results
+            });
+        }
+
+        // If not in cache, query the database
+        const trips = await Trip.find({
+            trip_name: {
+                $regex: trip_name, // Match names that contain the search string
+                $options: 'i' // Case-insensitive search
+            }
+        });
+
+        const numberOfResults = trips.length;
+
+        if (numberOfResults === 0) {
+            return res.status(404).json({ message: 'No trips found' });
+        }
+
+        // Format the response
+        // const result = {
+        //     numberOfResults,
+        //     results: trips.map(trip => trip.trip_name) // Map to only include trip_name
+        // };
+        const result = {
+            numberOfResults,
+            results: trips.map(trip => trip)
+        };
+
+        // Cache the result
+        await redisClient.set(cacheKey, JSON.stringify(result), 'EX', 3600); // Cache for 1 hour
+
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 const createTrip = async (req, res) => {
     try {
@@ -179,13 +230,12 @@ const deleteTrip = async (req, res) => {
     }
 };
 
-
-
 module.exports = {
     getAllTrips,
     getOneTrip,
     getMyTrips,
     getTripsByAuthor,
+    searchTripsByName,
     createTrip,
     updateTrip,
     deleteTrip
