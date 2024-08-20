@@ -4,10 +4,9 @@
 - [ ] Fix love button issue: only increase the count when pressed, without opening the trip
 - [ ] Fix searching par results padding and shape
 - [ ] Fix toggle puton on the user image
-- [ ] Ubdate about us page
-- [ ] Ubdate user page
-- [ ] Add settings page
+- [done] Ubdate about us page
+- [done] Ubdate user page
+- [done] Add settings page
 - [done] Add singout functionality
 - [ ] Add toasts to all that nead toasts
 - [ ] Create loading component
-- [ ] connect google places api with the creatTrip form

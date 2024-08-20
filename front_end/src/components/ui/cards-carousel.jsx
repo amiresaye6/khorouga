@@ -217,7 +217,7 @@ export const Card = ({
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[30rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
-        <Reactions reactions={card.favs} tripId={card.id}/>
+        <Reactions reactions={card.favs} tripId={card.id} />
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `author-${card.authro}` : undefined}
