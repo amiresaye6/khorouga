@@ -10,3 +10,4 @@
 - [done] Add singout functionality
 - [ ] Add toasts to all that nead toasts
 - [ ] Create loading component
+- [ ] connect google places api with the creatTrip form
