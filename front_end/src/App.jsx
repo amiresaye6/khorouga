@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import About from './pages/About';
 import ContactUs from './pages/ContactUs';
 import CreateTrip from './pages/CreateTrip';
+import NotAllawed from './pages/NotAllawed';
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 				<Route path="/create" element={<CreateTrip />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/contact" element={<ContactUs />} />
+				<Route path="/not-allawed" element={<NotAllawed />} />
 			</Routes>
 			<FooterComponent />
 		</div>

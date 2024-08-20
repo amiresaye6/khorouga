@@ -39,7 +39,7 @@ const Navbar = () => {
           setLoggedIn(true);
         }
         else {
-          toast.error('please log in or signup first');
+          // toast.error('please log in or signup first');
           setLoggedIn(false);
         }
 
@@ -52,7 +52,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', to: '/' },
     { name: 'Explore Trips', to: '/explore' },
-    { name: 'Create Your Trip', to: '/create' },
+    { name: 'Create Your Trip', to: loggedIn ? '/create' : '/not-allawed' },
     { name: 'About Us', to: '/about' },
   ];
 
