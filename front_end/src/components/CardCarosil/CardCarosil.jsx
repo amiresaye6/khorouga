@@ -11,7 +11,7 @@ export function CardCarosil() {
       src: trip.cover_image,
       favs: trip.rating,
       location: trip.location,
-      id: trip.id,
+      id: trip._id,
       content: <Places places={trip.places} imgSrc={trip.cover_image} />,
     }
   })

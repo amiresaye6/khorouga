@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-export const Reactions = (props) => {
-  const [count, setCount] = useState(props.reactions);
+export const Reactions = ({ tripId, reactions }) => {
+  const [count, setCount] = useState(reactions);
   const [liked, setLiked] = useState(false);
 
-  const handleToggle = async () => {
+  const handleToggle = async (event) => {
+    event.stopPropagation(); // Prevent the outer button's click event
+
     const newCount = liked ? count - 1 : count + 1;
     setCount(newCount);
     setLiked(!liked);
 
     const token = localStorage.getItem('token');
-    const res = await fetch(`http://localhost:1234/api/trips/${props.tripId}`, {
+    console.log(tripId)
+    const res = await fetch(`http://localhost:1234/api/trips/${tripId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${token}`,
-      },
+      },  
       body: JSON.stringify({
-        rating: count,
+        rating: newCount,
       }),
     });
 
     if (res.ok) {
       toast.success('Thanks');
     } else {
-      toast.error('oops');
+      toast.error('Oops');
     }
   };
 
@@ -41,5 +44,3 @@ export const Reactions = (props) => {
     </div>
   );
 };
-
-
