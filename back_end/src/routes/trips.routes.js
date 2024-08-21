@@ -7,7 +7,8 @@ const {
     deleteTrip,
     getMyTrips,
     getTripsByAuthor,
-    searchTripsByName
+    searchTripsByName,
+    updateTripReactions
 } = require('../controllers/trips.controller.js');
 
 const router = express.Router();
@@ -28,6 +29,8 @@ router.get('/me/trips', validateToken, getMyTrips);
 router.post('/', validateToken, createTrip);
 
 router.put('/:id', validateToken, updateTrip);
+
+router.put('/reactions/:id', validateToken, updateTripReactions);
 
 router.delete('/:id', validateToken, deleteTrip);
 

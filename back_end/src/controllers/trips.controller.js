@@ -204,6 +204,46 @@ const updateTrip = async (req, res) => {
     }
 };
 
+// update a Trip reactions
+const updateTripReactions = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const trip = await Trip.findById(id);
+
+        if (!trip) {
+            return res.status(404).json({ message: "Trip not found" });
+        } else if (!req.user.id) {
+            return res.status(403).json({ message: "User does not have an account" });
+        }
+
+        // Extract the rating from req.body
+        const { rating } = req.body;
+
+        // Check if rating is provided and is a valid number
+        if (rating === undefined || typeof rating !== 'number') {
+            return res.status(400).json({ message: "Invalid rating value" });
+        }
+
+        // Update only the rating field
+        const updatedTrip = await Trip.findByIdAndUpdate(
+            id,
+            { $set: { rating } },
+            { new: true }
+        );
+
+        // Invalidate caches
+        await redisClient.del('allTrips');
+        await redisClient.del(`userTrips:${req.user.id}`);
+        await redisClient.del(`authorTrips:${trip.author}`);
+        await redisClient.del(`trip:${id}`);
+
+        res.status(200).json(updatedTrip);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 // delete a Trip
 const deleteTrip = async (req, res) => {
     try {
@@ -238,5 +278,6 @@ module.exports = {
     searchTripsByName,
     createTrip,
     updateTrip,
+    updateTripReactions,
     deleteTrip
 }
