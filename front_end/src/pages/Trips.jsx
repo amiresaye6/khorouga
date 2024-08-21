@@ -23,7 +23,7 @@ function Trips() {
 
 
     const fetchData = () => {
-        fetch('http://localhost:1234/api/trips', {
+        fetch('https://amiralsayed.tech/api/trips', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

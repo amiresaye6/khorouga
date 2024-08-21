@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 const SettingsPage = () => {
     const [username, setUsername] = useState('Amir Alsayed'); // Initial username
-    const [email, setEmail] = useState('johndoe@example.com');
+    const [email, setEmail] = useState('amir@gmail.com');
     const [password, setPassword] = useState('');
 
     const token = localStorage.getItem('token');
     useEffect(() => {
         if (token) {
             const fetchUser = async () => {
-                const res = await fetch('http://localhost:1234/api/users/current', {
+                const res = await fetch('https://amiralsayed.tech/api/users/current', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const SearchBar = () => {
         setResults([]);
 
         try {
-            const response = await fetch(`http://localhost:1234/api/trips/s/search?trip_name=${tripName}`);
+            const response = await fetch(`https://amiralsayed.tech/api/trips/s/search?trip_name=${tripName}`);
             if (!response.ok) {
                 throw new Error('Search failed');
             }

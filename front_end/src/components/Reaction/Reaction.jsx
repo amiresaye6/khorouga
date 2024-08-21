@@ -14,7 +14,7 @@ export const Reactions = ({ tripId, reactions }) => {
 
     const token = localStorage.getItem('token');
     console.log(tripId)
-    const res = await fetch(`http://localhost:1234/api/trips/reactions/${tripId}`, {
+    const res = await fetch(`https://amiralsayed.tech/api/trips/reactions/${tripId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

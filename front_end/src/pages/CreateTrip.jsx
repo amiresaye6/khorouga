@@ -45,7 +45,7 @@ const CreateTripForm = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:1234/api/trips', {
+            const response = await fetch('https://amiralsayed.tech/api/trips', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

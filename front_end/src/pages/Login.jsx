@@ -18,7 +18,7 @@ function Login() {
     }
 
     async function auth() {
-        const response = await fetch('http://127.0.0.1:1234/request', {
+        const response = await fetch('https://amiralsayed.tech/request', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function Login() {
 
     const fetchUser = async (e) => {
         e.preventDefault(); // Prevent form submission reload
-        const response = await fetch('http://localhost:1234/api/users/login', {
+        const response = await fetch('https://amiralsayed.tech/api/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ const Navbar = () => {
     if (token) {
       // maybe do'nt have an account or signed out
       const fetchUser = async () => {
-        const res = await fetch('http://localhost:1234/api/users/current',
+        const res = await fetch('https://amiralsayed.tech/api/users/current',
           {
             method: 'GET',
             headers: {

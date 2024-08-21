@@ -27,7 +27,7 @@ function Register() {
 
     const fetchUser = async (e) => {
         e.preventDefault(); // Prevent form submission reload
-        const response = await fetch('http://localhost:1234/api/users/register', {
+        const response = await fetch('https://amiralsayed.tech/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

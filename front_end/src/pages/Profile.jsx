@@ -13,7 +13,7 @@ function Profile() {
             if (token) {
                 try {
                     const response = await fetch(
-                        'http://localhost:1234/api/trips/me/trips',
+                        'https://amiralsayed.tech/api/trips/me/trips',
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`,
