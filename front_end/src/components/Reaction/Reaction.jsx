@@ -14,12 +14,12 @@ export const Reactions = ({ tripId, reactions }) => {
 
     const token = localStorage.getItem('token');
     console.log(tripId)
-    const res = await fetch(`http://localhost:1234/api/trips/${tripId}`, {
+    const res = await fetch(`http://localhost:1234/api/trips/reactions/${tripId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         'Authorization': `Bearer ${token}`,
-      },  
+      },
       body: JSON.stringify({
         rating: newCount,
       }),
@@ -29,6 +29,8 @@ export const Reactions = ({ tripId, reactions }) => {
       toast.success('Thanks');
     } else {
       toast.error('Oops');
+      const data = await res.json();
+      console.log(data)
     }
   };
 
