@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
-import toast from 'react-hot-toast';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const fail = () => toast.error('Failed, try again please', {
-        // duration: 4000,
-        style: {
-            background: '#333',
-            color: '#fff',
-        },
-    });
+    const [token, setToken] = useState(null);
 
     function navigate(url) {
         window.location.href = url;
@@ -30,6 +22,7 @@ function Login() {
         });
 
         const data = await response.json();
+        setToken(data.token); // Assuming the token is returned in `data.token`
         navigate(data.url);
     }
 
@@ -45,18 +38,13 @@ function Login() {
                 password,
             }),
         });
-        if (response.ok) {
-            const user = await response.json();
-            localStorage.setItem('token', user.accessToken);
-            navigate('/');
-        }
-        else {
-            fail()
-        }
+        const user = await response.json();
+        console.log(user);
     };
 
     return (
         <div className="flex flex-col h-dvh justify-center items-center bg-slate-800">
+            <div onClick={() => console.log(token)}>get token</div>
             <div className="bg-white bg-opacity-20 backdrop-blur-md p-10 rounded-lg shadow-lg w-full max-w-md">
                 <form className="max-w-sm mx-auto w-full" onSubmit={fetchUser}>
                     <div className="mb-5">
@@ -69,7 +57,7 @@ function Login() {
                     </div>
                     <div className="flex items-start mb-5">
                         <div className="flex items-center h-5">
-                            <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+                            <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                         </div>
                         <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                     </div>

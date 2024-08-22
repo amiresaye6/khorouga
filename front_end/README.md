@@ -1,0 +1,12 @@
+# To DO
+- [] Allow anyone to favorite any trip while logged in, not just the creator of the trip
+- [done] Add login/signup conditional redirect to the navbar
+- [ ] Fix love button issue: only increase the count when pressed, without opening the trip
+- [ ] Fix searching par results padding and shape
+- [ ] Fix toggle puton on the user image
+- [done] Ubdate about us page
+- [done] Ubdate user page
+- [done] Add settings page
+- [done] Add singout functionality
+- [ ] Add toasts to all that nead toasts
+- [ ] Create loading component

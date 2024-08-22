@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const Logo = () => {
+const Logo = (props) => {
     const draw = {
         hidden: { pathLength: 0, opacity: 0 },
         visible: {
@@ -32,10 +32,12 @@ const Logo = () => {
                             variants={draw}
                             strokeWidth="3"
                             fill="none"
-                            stroke="#009080"
+                            stroke="#7a84ef"
                         />
                     </motion.svg>
-                    <span className="relative text-gray-800 font-alliance">Khorouga</span>
+                    {
+                        <span className="relative text-white font-alliance">Khorouga</span>
+                    }
                 </span>
             </h1>
         </div>

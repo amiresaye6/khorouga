@@ -17,7 +17,7 @@ export const Meteors = ({ number = 20 }) => {
 
     return (
         <div
-            className="relative w-full h-[50vh] overflow-hidden"
+            className="absolute w-full h-[50vh] left-0 top-0"
             style={{ width: '90vw', height: '50vh' }}
         >
             {[...meteorStyles].map((style, idx) => (

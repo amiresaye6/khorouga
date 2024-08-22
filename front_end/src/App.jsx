@@ -1,9 +1,17 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from "./components/Navbar/Navbar";
 import { Toaster } from 'react-hot-toast';
-import LoginCard from './components/LoginCard/LoginCard';
 import Trips from './pages/Trips';
 import Home from './pages/Home';
+import FooterComponent from './components/Footer/FooterComponent';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import About from './pages/About';
+import ContactUs from './pages/ContactUs';
+import CreateTrip from './pages/CreateTrip';
+import NotAllawed from './pages/NotAllawed';
+import SettingsPage from './pages/Settings';
 
 function App() {
 	return (
@@ -12,12 +20,17 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<LoginCard />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
 				<Route path="/explore" element={<Trips />} />
-				<Route path="/about" element={<Home />} />
-				<Route path="/create" element={<Home />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/create" element={<CreateTrip />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/contact" element={<ContactUs />} />
+				<Route path="/settings" element={<SettingsPage />} />
+				<Route path="/not-allawed" element={<NotAllawed />} />
 			</Routes>
-			{/* <Footer /> */}
+			<FooterComponent />
 		</div>
 	);
 }

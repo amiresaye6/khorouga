@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, Card } from "../ui/apple-cards-carousel";
+import { Carousel, Card } from "../ui/cards-carousel";
+import { Link } from "react-router-dom";
 
 export function CardCarosil() {
   const [trips, setTrips] = useState([])
@@ -8,6 +9,9 @@ export function CardCarosil() {
       author: trip.author,
       title: trip.trip_name,
       src: trip.cover_image,
+      favs: trip.rating,
+      location: trip.location,
+      id: trip._id,
       content: <Places places={trip.places} imgSrc={trip.cover_image} />,
     }
   })
@@ -17,11 +21,10 @@ export function CardCarosil() {
 
 
   const fetchData = () => {
-    fetch('http://localhost:1234/api/trips', {
+    fetch('https://amiralsayed.tech/api/trips', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Include any other headers if needed (e.g., Authorization)
       }
     })
       .then(response => response.json())
@@ -42,7 +45,7 @@ export function CardCarosil() {
   return (
     <div className="w-full h-full py-20">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-        Start your next Advensior now.
+        Start your next Adventior now.
       </h2>
       <Carousel items={cards} />
     </div>
@@ -64,7 +67,8 @@ export const Places = (props) => {
               <p className="font-bold text-neutral-700 dark:text-neutral-200">
                 {place.place_name}
               </p>
-              <p>{place.location}</p>
+              <p></p>
+              <Link to={place.location} className="hover:text-indigo-700" target="__plank">{place.location}</Link>
               <p>{place.description}</p>
             </p>
             {/*  TO-DO: make the image as the background of each place card with shome shading */}
@@ -73,7 +77,7 @@ export const Places = (props) => {
               alt={place.place_name}
               height="500"
               width="500"
-              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded-md"
             />
           </div>
         );
