@@ -88,9 +88,51 @@ const getUsers = async (req, res) => {
     }
 }
 
+// update user info
+const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "user not found" });
+        } else if (user.id.toString() !== req.user.id) {
+            return res.status(403).json({ message: "User doesn't have permission" });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// delete user
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: "user not found" });
+        } else if (user.id.toString() !== req.user.id) {
+            return res.status(403).json({ message: "User doesn't have permission" });
+        }
+
+        await User.findByIdAndDelete(id);
+
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     userRegister,
     userLogin,
     getCurrentUser,
-    getUsers
+    getUsers,
+    updateUser,
+    deleteUser
 }
