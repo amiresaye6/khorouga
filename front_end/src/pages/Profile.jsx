@@ -3,6 +3,7 @@ import PaginationButtonsComponent from '../components/PaginationButtonsComponent
 import toast from 'react-hot-toast';
 import { Places } from '../components/CardCarosil/CardCarosil';
 import { Card } from '../components/ui/cards-carousel';
+import { Link } from 'react-router-dom';
 
 function Profile() {
     const [myTrips, setMyTrips] = useState([]);
@@ -39,6 +40,37 @@ function Profile() {
         fetchMyTrips();
     }, []);
 
+    const handleDelete = async (id) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            toast.error("Please log in to delete a trip");
+            return;
+        }
+
+        const confirmed = window.confirm("Are you sure you want to delete this trip?");
+        if (!confirmed) return;
+
+        try {
+            const response = await fetch(`https://amiralsayed.tech/api/trips/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                toast.success("Trip deleted successfully");
+                setMyTrips(myTrips.filter(trip => trip._id !== id));
+            } else {
+                const result = await response.json();
+                toast.error(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            toast.error("An error occurred while deleting the trip. Please try again.");
+        }
+    };
+
     const newData = myTrips.map(trip => {
         return {
             author: trip.author,
@@ -50,7 +82,7 @@ function Profile() {
             content: <Places places={trip.places} imgSrc={trip.cover_image} />,
         }
     });
-    
+
     const cards = newData.map((card, index) => (
         <Card key={card.src} card={card} index={index} />
     ));
@@ -72,18 +104,19 @@ function Profile() {
                     {cards.map((card, index) => (
                         <div key={`card_${index}`} className="flex flex-col justify-center items-start">
                             <div className="ml-2 mb-2 flex gap-2">
-                                <button 
+                                <button
                                     className="py-1 px-3 text-sm font-medium focus:outline-none rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 bg-red-600 text-white hover:bg-red-700"
-                                    onClick={() => toast("Delete functionality not implemented yet")}
+                                    onClick={() => handleDelete(card.id)}
                                 >
                                     Delete
                                 </button>
-                                <button 
+                                <Link
+                                    to='update'
                                     className="py-1 px-3 text-sm font-medium focus:outline-none rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 bg-blue-600 text-white hover:bg-blue-700"
                                     onClick={() => toast("Edit functionality not implemented yet")}
                                 >
                                     Edit
-                                </button>
+                                </Link>
                             </div>
                             {card}
                         </div>

@@ -1,0 +1,23 @@
+server {
+    listen 80;
+    server_name amiralsayed.tech www.amiralsayed.tech;
+
+    # Serve the React app
+    location / {
+        # Change this to the path where your built React app is located
+        root /var/www/html/my-react-app;
+        
+        # Ensure that React Router DOM can handle routing by serving index.html for unknown routes
+        try_files $uri /index.html;
+    }
+    
+    # Serve the backend API
+    location /api/ {
+        # Change this to the path where your backend server is running
+        proxy_pass http://127.0.0.1:1234;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

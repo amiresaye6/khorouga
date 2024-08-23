@@ -12,6 +12,7 @@ import ContactUs from './pages/ContactUs';
 import CreateTrip from './pages/CreateTrip';
 import NotAllawed from './pages/NotAllawed';
 import SettingsPage from './pages/Settings';
+import UpdateTrip from './pages/UpdateTrip';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 				<Route path="/about" element={<About />} />
 				<Route path="/create" element={<CreateTrip />} />
 				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/update/:tripId" element={<UpdateTrip />} />
 				<Route path="/contact" element={<ContactUs />} />
 				<Route path="/settings" element={<SettingsPage />} />
 				<Route path="/not-allawed" element={<NotAllawed />} />
