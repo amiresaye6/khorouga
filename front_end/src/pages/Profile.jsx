@@ -94,6 +94,8 @@ function Profile() {
         }, 3000);
     };
 
+    // console.log(newData[0])
+
     return (
         <div className="relative w-full h-fit bg-gray-900 text-white">
             <div className="w-full text-center flex-col py-10 md:py-20 flex justify-center items-center">
@@ -106,14 +108,15 @@ function Profile() {
                             <div className="ml-2 mb-2 flex gap-2">
                                 <button
                                     className="py-1 px-3 text-sm font-medium focus:outline-none rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 bg-red-600 text-white hover:bg-red-700"
-                                    onClick={() => handleDelete(card.id)}
+                                    onClick={() => handleDelete(card.props.card.id)}
                                 >
                                     Delete
                                 </button>
                                 <Link
-                                    to='update'
+                                    // to={`update/66c9edf84f1ab17558faa1ba`}
+                                    to={`update/${card.props.card.id}`}
                                     className="py-1 px-3 text-sm font-medium focus:outline-none rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 bg-blue-600 text-white hover:bg-blue-700"
-                                    onClick={() => toast("Edit functionality not implemented yet")}
+                                    onClick={() => console.log("Start editing now")}
                                 >
                                     Edit
                                 </Link>
