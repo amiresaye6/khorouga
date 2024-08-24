@@ -65,10 +65,8 @@ export const Places = (props) => {
           >
             <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
               <p className="font-bold text-neutral-700 dark:text-neutral-200">
-                {place.place_name}
+              <Link to={place.location} className="hover:text-indigo-700" target="__plank">{place.place_name}</Link>
               </p>
-              <p></p>
-              <Link to={place.location} className="hover:text-indigo-700" target="__plank">{place.location}</Link>
               <p>{place.description}</p>
             </p>
             {/*  TO-DO: make the image as the background of each place card with shome shading */}
