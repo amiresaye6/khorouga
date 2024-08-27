@@ -13,10 +13,12 @@ import CreateTrip from './pages/CreateTrip';
 import NotAllawed from './pages/NotAllawed';
 import SettingsPage from './pages/Settings';
 import UpdateTrip from './pages/UpdateTrip';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
 	return (
 		<div className='App'>
+			<ScrollToTop />
 			<Toaster />
 			<Navbar />
 			<Routes>
