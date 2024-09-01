@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import toast from 'react-hot-toast';
 
 const SettingsPage = () => {
@@ -7,12 +7,14 @@ const SettingsPage = () => {
     const [password, setPassword] = useState('');
     const [userId, setUserId] = useState('');
     const [changed, setChanged] = useState(false);
+    const [avatar, setAvatar] = useState('');
+    const fileInputRef = useRef(null);
 
     const token = localStorage.getItem('token');
 
     const updateUser = async (userId) => {
         try {
-            const res = await fetch(`https://amiralsayed.tech/api/users/update/${userId}`, {
+            const res = await fetch(`http://localhost:1234/api/users/update/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +40,7 @@ const SettingsPage = () => {
 
     const deleteUser = async () => {
         try {
-            const res = await fetch(`https://amiralsayed.tech/api/users/delete/${userId}`, {
+            const res = await fetch(`http://localhost:1234/api/users/delete/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -79,7 +81,7 @@ const SettingsPage = () => {
         if (token) {
             const fetchUser = async () => {
                 try {
-                    const res = await fetch('https://amiralsayed.tech/api/users/current', {
+                    const res = await fetch('http://localhost:1234/api/users/current', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -89,9 +91,11 @@ const SettingsPage = () => {
 
                     if (res.ok) {
                         const user = await res.json();
+                        console.log(user)
                         setUserId(user.id);
                         setUsername(user.userName);
                         setEmail(user.email);
+                        setAvatar(user.avatar);
                     } else {
                         toast.error('Failed to fetch user data.');
                     }
@@ -113,14 +117,84 @@ const SettingsPage = () => {
         }
     };
 
+    const handleClick = () => {
+        alert('Change profile picture');
+        fileInputRef.current.click();
+    };
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('avatar', file);
+
+            try {
+                // First, upload the avatar
+                const res = await fetch(`http://localhost:1234/api/users/upload-avatar/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: formData,
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const avatar = data.user.avatar;
+                    setAvatar(avatar);
+                    toast.success('Profile picture updated!');
+
+                    // Then, update the user's profile with the new avatar URL
+                    try {
+                        const res2 = await fetch(`http://localhost:1234/api/users/update/${userId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`,
+                            },
+                            body: JSON.stringify({
+                                avatar,
+                            })
+                        });
+
+                        if (res2.ok) {
+                            setChanged(true);
+                            toast.success('Changes saved!');
+                        } else {
+                            toast.error('Failed to save changes.');
+                        }
+                    } catch (error) {
+                        toast.error('An error occurred while saving changes.');
+                    }
+                } else {
+                    toast.error('Failed to upload profile picture.');
+                }
+            } catch (error) {
+                toast.error('An error occurred during the upload.');
+            }
+        }
+    };
+
+
     return (
         <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center py-10 pt-24">
             <div className="w-full max-w-4xl px-5">
                 <div className="flex items-center mb-8">
                     <img
-                        src="https://via.placeholder.com/150"
+                        // src={avatar}
+                        // src={avatar ? `http://localhost:1234/uploads/${avatar}` : "https://mir-s3-cdn-cf.behance.net/projects/404/19aa7e103324129.Y3JvcCwzMTg5LDI0OTQsMCwxMTc2.jpg"}
+                        src={avatar ? avatar : "https://mir-s3-cdn-cf.behance.net/projects/404/19aa7e103324129.Y3JvcCwzMTg5LDI0OTQsMCwxMTc2.jpg"}
+                        // src={avatar ? avatar : "https://via.placeholder.com/150"}
                         alt="User Profile"
                         className="w-32 h-32 rounded-full border-2 border-gray-700"
+                        onClick={handleClick}
+                    />
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        accept="image/png, image/jpg, image/jpeg"
+                        onChange={handleFileChange}
                     />
                     <div className="ml-6 w-full">
                         <label htmlFor="username" className="block text-lg font-semibold mb-2">
@@ -196,30 +270,7 @@ const SettingsPage = () => {
                 </div>
 
                 <div className="space-y-6">
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Account Settings</h2>
-                        <p className="text-gray-400">Manage your account settings and set e-mail preferences.</p>
-                    </div>
-
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Privacy Settings</h2>
-                        <p className="text-gray-400">Control your privacy settings and activity logs.</p>
-                    </div>
-
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Notification Settings</h2>
-                        <p className="text-gray-400">Manage notifications and alerts for your account.</p>
-                    </div>
-
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Security Settings</h2>
-                        <p className="text-gray-400">Manage your security options such as passwords and two-factor authentication.</p>
-                    </div>
-
-                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-4">Connected Accounts</h2>
-                        <p className="text-gray-400">Manage the apps and services connected to your account.</p>
-                    </div>
+                    {/* The rest of your settings components */}
                 </div>
             </div>
         </div>
