@@ -7,36 +7,32 @@ const userRegister = async (req, res) => {
         const { userName, email, password } = req.body;
 
         if (!userName || !email || !password) {
-            return res.status(400).json({ message: "all fields are mandatory" });
+            return res.status(400).json({ message: "All fields are mandatory" });
         }
 
         const userAvailable = await User.findOne({ email });
 
         if (userAvailable) {
-            return res.status(400).json({ message: "user already registerd" });
+            return res.status(400).json({ message: "User already registered" });
         }
 
-        // hash pasword
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log("hashed password is : ", hashedPassword);
+        console.log("Hashed password is: ", hashedPassword);
 
-        const user = await User.create(
-            {
-                userName,
-                email,
-                password: hashedPassword,
-                avatar: 'uploads/amongus.png',
-            }
-        );
+        const user = await User.create({
+            userName,
+            email,
+            password: hashedPassword,
+            avatar: 'uploads/amongus.png',
+        });
 
         if (user) {
-            res.status(201).json({ _id: user.id, email: user.email })
-        }
-        else {
+            res.status(201).json({ _id: user.id, email: user.email });
+        } else {
             return res.status(400).json({ message: "User data not valid" });
         }
 
-        // res.status(200).json({ message: "register a new user" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -45,56 +41,65 @@ const userRegister = async (req, res) => {
 // Avatar Upload Controller
 const uploadAvatar = async (req, res) => {
     try {
-      const userId = req.params.id;
-      const user = await User.findById(userId);
-  
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      user.avatar = req.file ? req.file.path : user.avatar;
-      await user.save();
-  
-      res.status(200).json({ message: 'Avatar uploaded successfully', user });
+        const userId = req.params.id;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (req.file) {
+            // Assuming `uploads` is the directory where images are served
+            user.avatar = `/uploads/${req.file.filename}`;
+            await user.save();
+
+            // Construct the full URL for the avatar
+            const avatarUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+
+            res.status(200).json({ message: 'Avatar uploaded successfully', user: { ...user.toObject(), avatar: avatarUrl } });
+        } else {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
     } catch (error) {
-      res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
+};
 
 const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ message: "all fields are mandatory" });
+            return res.status(400).json({ message: "All fields are mandatory" });
         }
 
         const user = await User.findOne({ email });
 
-        // compare password with hashed passord
+        // Compare password with hashed password
         if (user && await bcrypt.compare(password, user.password)) {
             const accessToken = jwt.sign({
                 user: {
                     userName: user.userName,
                     email: user.email,
-                    id: user.id
+                    id: user.id,
+                    avatar: user.avatar
                 }
             },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: "50m" }
             );
             res.status(200).json({ accessToken });
-        }
-        else {
-            return res.status(401).json({ message: "email or passowrd is not valid" });
+        } else {
+            return res.status(401).json({ message: "Email or password is not valid" });
         }
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
+
 const getCurrentUser = async (req, res) => {
     try {
-        res.status(200).json(req.user)
+        res.status(200).json(req.user);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -103,25 +108,39 @@ const getCurrentUser = async (req, res) => {
 const getUsers = async (req, res) => {
     try {
         const users = await User.find({});
-        res.status(200).json(users)
+        res.status(200).json(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
 
-// update user info
+// Update user info
 const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
 
         if (!user) {
-            return res.status(404).json({ message: "user not found" });
+            return res.status(404).json({ message: "User not found" });
         } else if (user.id.toString() !== req.user.id) {
             return res.status(403).json({ message: "User doesn't have permission" });
         }
 
-        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+        const { userName, email, password } = req.body;
+        const updateData = { userName, email };
+
+        // Hash password if it is being updated
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            updateData.password = hashedPassword;
+        }
+
+        // Keep the current avatar if not updated
+        if (req.body.avatar) {
+            updateData.avatar = req.body.avatar;
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(id, updateData, { new: true });
 
         res.status(200).json(updatedUser);
     } catch (error) {
@@ -129,14 +148,14 @@ const updateUser = async (req, res) => {
     }
 };
 
-// delete user
+// Delete user
 const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
 
         if (!user) {
-            return res.status(404).json({ message: "user not found" });
+            return res.status(404).json({ message: "User not found" });
         } else if (user.id.toString() !== req.user.id) {
             return res.status(403).json({ message: "User doesn't have permission" });
         }
@@ -157,4 +176,4 @@ module.exports = {
     getUsers,
     updateUser,
     deleteUser
-}
+};

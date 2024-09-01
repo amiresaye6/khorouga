@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema(
         },
         avatar: {
             type: String,
-            default: "amongus.png"
+            default: "/uploads/default.jpg"
         }
     },
     {
