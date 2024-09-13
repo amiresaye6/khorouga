@@ -77,6 +77,10 @@ The design is inspired by a modern and clean aesthetic, achieved through the use
       .then(data => setTrips(data));
   }, []);
   ```
+# to do
+1- add image upload functionality
+2- add data validation in the api
+3- fix trips page
 
 ### **Deployment**
 The frontend is deployed using Nginx as a reverse proxy. To deploy:
